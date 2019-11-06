@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ICA16
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string sInput = null; 
+            byte bRandom = 0;
+            byte bInput = 0;
+            Random random = new Random();
+            int iLoopCount = 0;
+            int iCorrect = 0;
+
+            Console.Title = "yeet";
+            Console.WriteLine("\nEnter the binary equivalent to the next 5(five) hex values.");
+
+            do
+            {
+                bRandom = (byte)random.Next(256);
+                Console.Write("\nThe binary equivalent to 0x{0:X} is: ", bRandom);
+                sInput = Console.ReadLine();
+
+                do
+                {
+                    if (sInput.Length != 8)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("\nThis is not an 8 bit value.");
+                        Console.ResetColor();
+                        Console.Beep(400, 200);
+                        Console.Write("\nThe binary equivalent to 0x{0:X} is: ", bRandom);
+                        sInput = Console.ReadLine();
+                    }
+                }
+                while (sInput.Length != 8);
+
+                bInput = Convert.ToByte(sInput, 2);
+                //checking answer with if statements
+                if (bInput != bRandom)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("Incorrect.");
+                    Console.ResetColor();md
+
+                }
+                if (bInput == bRandom)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Correct!");
+                    Console.ResetColor();
+                    iCorrect++;
+
+                }
+
+                iLoopCount++;
+                //Code(random, bRandom, sInput, bInput, iCorrect, iLoopCount);  
+            }
+            while (iLoopCount < 5);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nYou had {0}/5 correct.", iCorrect);
+            Console.ResetColor();
+
+            Console.Write("\nPress any key to exit...");
+            Console.ReadKey();
+        }
+
+        static void Code(Random random, byte bRandom, string sInput, byte bInput, int iCorrect, int iLoopCount)
+        {
+            Console.Write("fug");
+        }
+    }
+}
